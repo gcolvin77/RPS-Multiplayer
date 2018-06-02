@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+
+<head>
+  
+  <meta charset="UTF-8">
+  <title>RPS Multiplayer</title>
+
+  <link rel="stylesheet" href="assets/css/reset.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">   
+  <link rel="stylesheet" href="assets/css/style.css"> 
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+  
+  
+</head>
+
+
+<body>
+
+<div class="container">
+
+        <div class="jumbotron" style="background-color: navy; color: yellow; height: 200px;">
+                <h1 class="text-center" style="position: relative; top: -40px;">Rock - Paper - Scissors - Lizard - Spock</h1>
+                <h4 class="text-center" style="position: relative; top: -40px;">Online Multiplayer Edition</h4>
+
+    </div>  <!--end jumbotron -->
+
+<div class="row">
+    <div class="col-md-4"></div>
+
+    <div class="col-md-2">
+        <a class="btn btn-dark" style="display: block; margin:auto;" href="play.html" role="button">Play</a>
+    </div>
+
+    <div class="col-md-2">
+        <a class="btn btn-dark" style="display: block; margin:auto;" href="rules.html" role="button">Rules</a>
+    </div>
+
+    <div class="col-md-4"></div>
+
+
+
+</div>
+
+
+</div>  <!-- end container -->
+
+<script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDeY2Lf9rPw6cMjvxAa14oZFR5clU9ETaY",
+    authDomain: "rpsls-a9917.firebaseapp.com",
+    databaseURL: "https://rpsls-a9917.firebaseio.com",
+    projectId: "rpsls-a9917",
+    storageBucket: "",
+    messagingSenderId: "335381908903"
+  };
+  firebase.initializeApp(config);
+</script>
+
+<script src="assets/javascript/game.js"></script>
+</body>
+
+
+</html>

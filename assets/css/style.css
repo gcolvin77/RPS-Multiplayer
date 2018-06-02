@@ -1,0 +1,22 @@
+button{
+    border: none;
+    background-color: white;
+    cursor: pointer;
+}
+
+#operator {
+    font-size: 100px;
+    font-weight: 900;
+    position: relative;
+    top: -38px;
+    left: 15px;
+}
+
+.tab-content {
+    background-color: navy;
+    color: yellow;
+    height: 250px;
+    padding: 15px;
+    overflow-y: scroll;
+    border-bottom-left-radius: 20px;
+}

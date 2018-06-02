@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+
+<head>
+  
+  <meta charset="UTF-8">
+  <title>RPS Multiplayer</title>
+
+  <link rel="stylesheet" href="assets/css/reset.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">   
+  <link rel="stylesheet" href="assets/css/style.css"> 
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+  
+  
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="jumbotron" style="background-color: navy; color: yellow; height: 200px;">
+        <h1 class="text-center" style="position: relative; top: -40px;">Rock - Paper - Scissors - Lizard - Spock</h1>
+        <h4 class="text-center" style="position: relative; top: -40px;">Online Multiplayer Edition</h4>
+
+        <form class="form-inline" style="position: relative; top: -25px;">
+                
+                <input type="text" class="form-control mb-2 mr-sm-2" id="nameInput" placeholder="Enter name here">
+              
+                <button type="submit" class="btn btn-primary mb-2" id="nameSubmit">Submit</button>
+        </form>
+
+    </div>  <!--end jumbotron -->
+
+<div class="row">
+    <div class="col-md-4"></div>
+
+    <div class="col-md-2">
+        <a class="btn btn-dark" style="display: block; margin:auto;" href="play.html" role="button">Play</a>
+    </div>
+
+    <div class="col-md-2">
+        <a class="btn btn-dark" style="display: block; margin:auto;" href="rules.html" role="button">Rules</a>
+    </div>
+
+    <div class="col-md-4"></div>
+
+</div>  <!-- end row -->
+<br>
+     <div class="row">
+
+        <div class="col-md-1"></div>
+        <div class="col-md-3">
+                <h4>Click to Choose</h4><br>
+                <div class="row">
+                        <button value="rock" class="choice">
+                        <img src="assets/images/rock.png" alt="rock"> </button>
+                        <h5 style="margin-top: 18px;">&nbsp&nbsp Rock</h5>
+                </div>
+                <br>
+                <div class="row">   
+                        <button value="paper" class="choice">                     
+                        <img src="assets/images/paper.png" alt="paper"> </button>
+                        <h5 style="margin-top: 18px;">&nbsp&nbsp Paper</h5>
+                </div>
+                <br>
+                <div class="row">     
+                        <button value="scissors" class="choice">                   
+                        <img src="assets/images/scissors.png" alt="scissors"> </button>
+                        <h5 style="margin-top: 18px;">&nbsp&nbsp Scissors</h5>
+                </div>
+                <br>
+                <div class="row">    
+                        <button value="lizard" class="choice">                    
+                        <img src="assets/images/lizard.png" alt="lizard"> </button>
+                        <h5 style="margin-top: 18px;">&nbsp&nbsp Lizard</h5>
+                </div>
+                <br>
+                <div class="row">   
+                        <button value="spock" class="choice">                     
+                        <img src="assets/images/spock.png" alt="spock"> </button>
+                        <h5 style="margin-top: 18px;">&nbsp&nbsp Spock</h5>
+                </div>
+
+     </div>  <!-- end 1st column -->
+
+
+        <div class="col-md-4">
+                <img style="display: block; margin:auto;" src="assets/images/BBT.png" alt="What defeats what"
+                 height= 225px;>
+                 <br><br>
+               <div class="row">
+                 <div class="col-md-4" id="chosenImage"></div>
+                    
+                <div class="col-md-4" id="operator"></div>
+
+                <div class="col-md-4" id="cpuChoice"></div>
+
+             </div>
+        </div>  <!-- end middle column -->
+
+        <div class="col-md-4">
+
+                <!-- Nav tabs -->
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                 <a class="nav-link active" id="score-tab" data-toggle="tab" href="#score" role="tab" aria-controls="score" aria-selected="true">Score</a>
+                 </li>
+
+                 <li class="nav-item">
+                     <a class="nav-link" id="chat-tab" data-toggle="tab" href="#chat" role="tab" aria-controls="chat" aria-selected="false">Chat</a>
+                </li>
+            </ul>
+      
+      <!-- Tab panes -->
+         <div class="tab-content">
+          <div class="tab-pane active" id="score" role="tabpanel" aria-labelledby="home-tab">
+             <br>   
+            <h3>Wins:</h3><br>
+            <h3>Losses:</h3><br>
+            <h3>Ties:</h3>
+
+          </div>
+
+          <div class="tab-pane" id="chat" role="tabpanel" aria-labelledby="profile-tab">
+              <p>test </p>  
+              <p>test </p> 
+              <p>test </p> 
+              <p>test </p> 
+              <p>test </p> 
+              <p>test </p> 
+              <p>test </p>
+              <p>test </p>
+              <p>test </p>
+              <p>test </p>
+              <p>test </p>
+            
+          </div>
+        </div> 
+        <br>
+         <div class="form-group">
+              <textarea class="form-control" id="messageInput" rows="3"></textarea>                
+              <button type="submit" class="btn btn-primary mb-2" id="messageSubmit">Submit</button>
+        </div> 
+
+              
+
+</div>  <!-- end  3rd column -->
+</div>  <!-- end row -->
+</div>  <!-- end container -->
+
+<script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDeY2Lf9rPw6cMjvxAa14oZFR5clU9ETaY",
+    authDomain: "rpsls-a9917.firebaseapp.com",
+    databaseURL: "https://rpsls-a9917.firebaseio.com",
+    projectId: "rpsls-a9917",
+    storageBucket: "",
+    messagingSenderId: "335381908903"
+  };
+  firebase.initializeApp(config);
+</script>
+<script src="assets/javascript/game.js"></script>
+</body>
+
+
+</html>
