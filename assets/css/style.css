@@ -13,10 +13,22 @@ button{
 }
 
 .tab-content {
-    background-color: navy;
-    color: yellow;
+    background-color: #1D1C21;
+    color: #BE3748;
     height: 250px;
     padding: 15px;
     overflow-y: scroll;
-    border-bottom-left-radius: 20px;
+}
+
+#nameInput{
+    width: 230px;
+
+}
+
+#versus {
+
+        font-size: 30px;
+        font-weight: 700;
+        text-align: center;        
+    
 }

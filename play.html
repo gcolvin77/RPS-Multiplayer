@@ -22,17 +22,17 @@
 
 <div class="container">
 
-    <div class="jumbotron" style="background-color: navy; color: yellow; height: 200px;">
+    <div class="jumbotron" style="background-color: #77A4DD; color: #BE3748; height: 200px;">
         <h1 class="text-center" style="position: relative; top: -40px;">Rock - Paper - Scissors - Lizard - Spock</h1>
         <h4 class="text-center" style="position: relative; top: -40px;">Online Multiplayer Edition</h4>
 
         <form class="form-inline" style="position: relative; top: -25px;">
                 
-                <input type="text" class="form-control mb-2 mr-sm-2" id="nameInput" placeholder="Enter name here">
-              
+                <input type="text" class="form-control mb-2 mr-sm-2" id="nameInput" placeholder="Enter name to play online">
                 <button type="submit" class="btn btn-primary mb-2" id="nameSubmit">Submit</button>
+                    
         </form>
-
+        
     </div>  <!--end jumbotron -->
 
 <div class="row">
@@ -92,6 +92,9 @@
                 <img style="display: block; margin:auto;" src="assets/images/BBT.png" alt="What defeats what"
                  height= 225px;>
                  <br><br>
+                 <div class="row" id="versus"><br>
+                 </div>
+
                <div class="row">
                  <div class="col-md-4" id="chosenImage"></div>
                     
@@ -113,6 +116,11 @@
                  <li class="nav-item">
                      <a class="nav-link" id="chat-tab" data-toggle="tab" href="#chat" role="tab" aria-controls="chat" aria-selected="false">Chat</a>
                 </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" id="queue-tab" data-toggle="tab" href="#queue" role="tab" aria-controls="chat" aria-selected="false">Queue</a>
+               </li>
+
             </ul>
       
       <!-- Tab panes -->
@@ -122,23 +130,9 @@
             <h3>Wins:</h3><br>
             <h3>Losses:</h3><br>
             <h3>Ties:</h3>
-
           </div>
-
-          <div class="tab-pane" id="chat" role="tabpanel" aria-labelledby="profile-tab">
-              <p>test </p>  
-              <p>test </p> 
-              <p>test </p> 
-              <p>test </p> 
-              <p>test </p> 
-              <p>test </p> 
-              <p>test </p>
-              <p>test </p>
-              <p>test </p>
-              <p>test </p>
-              <p>test </p>
-            
-          </div>
+          <div class="tab-pane" id="chat" role="tabpanel" aria-labelledby="profile-tab">  </div>
+          <div class="tab-pane" id="queue" role="tabpanel" aria-labelledby="profile-tab">  </div>
         </div> 
         <br>
          <div class="form-group">

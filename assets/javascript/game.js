@@ -6,46 +6,106 @@ var losses = 0;
 var ties = 0;
 
 var database = firebase.database();
-var active = [];
-var queued = [];
+var message="";
+var user= {};
 
+$("#messageInput").hide();
+$("#messageSubmit").hide();
 
+/* connected.on("value", function(snap) {
+
+if (snap.val()) {
+    connectedUser = totalUsers.push(true);
+    connectedUser.onDisconnect().remove();
+}
+
+});
+ */
 
 $("#nameSubmit").on("click", function(event){
     event.preventDefault();
 
-    var name = $("#nameInput").val().trim();
+     user = {
+         name : $("#nameInput").val().trim(),
+         selection: ""
+    }
     
     $("#nameInput").val("");
     $(".form-inline").hide();
+    $("#messageInput").show();
+    $("#messageSubmit").show();   
+    
+    var ref = firebase.database().ref("active");
+    ref.once("value")
+        .then(function(snapshot){
+         var activeUsers = snapshot.numChildren(); 
+         console.log(activeUsers);
 
-    console.log(name);
+        if (activeUsers < 2){   //max 2 users in active
+        database.ref("/active").push(user).onDisconnect().remove();
+    }
+        else {
+        database.ref("/users").push(user).onDisconnect().remove();
 
-    database.ref().set({
-        name: name,
-    })
+    }
+    
+ }); //end snapshot for "active"      
 
+});  //end name submit event
 
-});
 
 $("#messageSubmit").on("click", function(event){
     event.preventDefault();
 
-    var message = $("#messageInput").val().trim();
+    message = $("#messageInput").val().trim();
     
     $("#messageInput").val("");
 
-    console.log(message);
+    database.ref("/messages").push(user.name + ": " + message);
 
-    database.ref().set({
-        message: message,
-    })
+});  //end message submit
+
+database.ref("/messages").on("child_added", function(childSnapshot, prevChildKey) {
+   
+    var newMessage = childSnapshot.val();
+    $("#chat").append(newMessage + "<br>");
+
+});  //end display messages
+
+database.ref("/users").on("child_added", function(childSnapshot, prevChildKey) {
+   
+    var newUser = JSON.parse(JSON.stringify(childSnapshot.val()));
+
+    $("#queue").append(newUser.name + "<br>");
+
+});  //end display player queue
 
 
-});
+database.ref("/active").on("value", function(snapshot, prevChildKey) {
+    $("#versus").empty();
+    var currentPlayers = JSON.parse(JSON.stringify(snapshot.val()));
+    var activeUsersCount = snapshot.numChildren();
+    
+    $("#versus").append("Active Players: <br>")
+
+    $("#versus").append(Object.values(currentPlayers)[0].name +  "&nbsp;&nbsp;&nbsp;");
+    
+    $("#versus").append(Object.values(currentPlayers)[1].name);
+    
+
+    if (activeUsersCount < 2){
+       var queuedUsers = database.ref("/users");
+       var userNext = Object.values(queuedUsers)[0];
+       console.log(userNext);
+       delete queuedUsers[0]; 
+
+    }
+
+}); //end display active players
 
 
 $(document).on("click", ".choice", function(){
+    
 
     $("#cpuChoice").empty();
     $("#chosenImage").empty();
